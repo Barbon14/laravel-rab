@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// admin login/logout
+// admin login/logout, panel
 Route::name('admin.')
         ->prefix('admin')
         ->group(function () {
@@ -21,7 +21,7 @@ Route::name('admin.')
             Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
             // to admin panel
-            Route::get('/panel', 'AdminController@dashboard')->name('panel');
+            Route::get('/panel', 'AdminController@panel')->name('panel');
         });
 
 // guest
