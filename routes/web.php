@@ -35,6 +35,7 @@ Route::name('article.')
 
             Route::middleware('auth')
                     ->group(function () {
+                        Route::get('/list', 'ArticleController@getList')->name('list');
                         Route::get('/create', 'ArticleController@create')->name('create');
                         Route::post('/store', 'ArticleController@store')->name('store');
                         Route::get('/edit/{id}', 'ArticleController@edit')->name('edit');
@@ -51,6 +52,7 @@ Route::name('place.')
 
             Route::middleware('auth')
                     ->group(function () {
+                        Route::get('/list', 'PlaceController@getList')->name('list');
                         Route::get('/create', 'PlaceController@create')->name('create');
                         Route::post('/store', 'PlaceController@store')->name('store');
                         Route::get('/edit/{id}', 'PlaceController@edit')->name('edit');

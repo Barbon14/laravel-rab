@@ -18,7 +18,7 @@
         <label for="address">Indirizzo</label>
         <input type="text" name="address" placeholder="Inserisci indirizzo">
 
-        <label for="category">Category</label>
+        <label for="category">Categoria</label>
         <select name="category">
             @foreach ($categories as $category)
                 <option value="{{$category -> id }}">{{ $category -> name }}</option>
@@ -30,4 +30,7 @@
 
         <input type="submit" value="Crea">
     </form>
+
+    <a href="{{ route('article.list') }}">Indietro</a>
+
 @endsection
