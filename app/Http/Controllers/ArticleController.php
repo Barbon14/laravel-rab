@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\ArticlePhoto;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -26,11 +27,14 @@ class ArticleController extends Controller
 
             'title' => 'string',
             'content' => 'string',
-            'address' => 'string',                      
+            'address' => 'string|max:255',                      
         ]);
 
         $article = Article::make($data);
 
+        // da aggiungere category
+        $category = Category::findOrFail($request->get('category'));
+        $article -> category() -> associate($category);
         $article -> save();
 
         // immagini 

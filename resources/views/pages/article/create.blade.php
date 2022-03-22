@@ -18,6 +18,13 @@
         <label for="address">Indirizzo</label>
         <input type="text" name="address" placeholder="Inserisci indirizzo">
 
+        <label for="category">Category</label>
+        <select name="category">
+            @foreach ($categories as $category)
+                <option value="{{$category -> id }}">{{ $category -> name }}</option>
+            @endforeach
+        </select>
+
         <label for="images">Inserisci Foto</label>
         <input type="file" name="images">
 
