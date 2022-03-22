@@ -21,7 +21,18 @@
                         @endif
 
                         {{ __('You are logged in!') }}
-                        <a class="btn btn-orange" href="{{ route('logout') }}">Logout</a>
+
+                        <h3>
+                            <a href="{{ route('article.list') }}">
+                                Lista articoli
+                            </a>
+                        </h3>
+                        <h3>
+                            <a href="{{ route('place.list') }}">
+                                Lista posti
+                            </a>
+                        </h3>
+                        <a class="btn btn-orange" href="{{ route('admin.logout') }}">Logout</a>
                     </div>
                 </div>
             </div>
