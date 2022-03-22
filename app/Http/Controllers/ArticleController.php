@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    public function getList() {
+
+        $articles = Article::all();
+
+        return view('pages.article.list', compact('articles'));
+    }
+
     public function show($id) {
 
         $article = Article::findOrFail($id);
@@ -18,38 +25,34 @@ class ArticleController extends Controller
     
     public function create() {
 
-        return view('pages.article.create');
+        $categories = Category::all();
+
+        return view('pages.article.create', compact('categories'));
     }
 
     public function store(Request $request) {
 
         $data = $request->validate([
 
-            'title' => 'string',
-            'content' => 'string',
+            'title' => 'required|string',
+            'content' => 'required|string',
             'address' => 'string|max:255',                      
         ]);
 
         $article = Article::make($data);
 
-        // da aggiungere category
         $category = Category::findOrFail($request->get('category'));
         $article -> category() -> associate($category);
         $article -> save();
 
         // immagini 
         $image = $request-> file('images');
-
         $imageName = 'article' . $article -> id . '_01' . '.' . $image->getClientOriginalExtension();
-
-        $image->storeAs('/assets/', $imageName, 'public');
-
+        $image->storeAs('/assets/articles/', $imageName, 'public');
         $imageData['photo'] = $imageName;
 
         $photo = ArticlePhoto::make($imageData);
-
         $photo -> article() -> associate($article->id);
-
         $photo -> save();
 
         return redirect()->route('article.show', $article->id);
@@ -59,6 +62,50 @@ class ArticleController extends Controller
 
         $article = Article::findOrFail($id);
 
-        return view('pages.article.edit', compact('article'));
+        $categories = Category::all();
+
+        $articlePhotos = ArticlePhoto::where('article_id', $id)->get();
+
+        return view('pages.article.edit', compact('article', 'categories', 'articlePhotos'));
     }
+
+    public function update(Request $request, $id)
+    {
+
+        $data = $request->validate([
+
+            'title' => 'string',
+            'content' => 'string',
+            'address' => 'string|max:255',
+        ]);
+
+        $article = Article::findOrFail($id);
+        $article -> update($data);
+
+        $category = Category::findOrFail($request->get('category'));
+        $article->category()->associate($category);
+        $article->save();
+
+        // immagini 
+        // $image = $request->file('images');
+        // $imageName = 'article' . $article->id . '_01' . '.' . $image->getClientOriginalExtension();
+        // $image->storeAs('/assets/articles/', $imageName, 'public');
+        // $imageData['photo'] = $imageName;
+
+        // $photo = ArticlePhoto::where('article_id', $id);;
+        // $photo->article()->associate($article->id);
+        // $photo->save();
+
+        return redirect()->route('article.show', $article->id);
+    }
+
+    public function delete($id) {
+
+        $article = Article::findOrFail($id);
+        $article -> articlePhotos() -> delete();
+        $article -> delete();
+
+        return redirect()->route('admin.panel');
+    }
+
 }
