@@ -12,8 +12,8 @@
         <label for="title">Titolo</label>
         <input type="text" name="title" placeholder="Inserisci titolo">
 
-        <label for="content">Contenuto articolo</label>
-        <textarea name="content" cols="30" rows="10" placeholder="Inserisci contenuto articolo"></textarea>
+        <label for="description">Contenuto articolo</label>
+        <textarea name="description" cols="30" rows="10" placeholder="Inserisci descrizione"></textarea>
 
         <label for="address">Indirizzo</label>
         <input type="text" name="address" placeholder="Inserisci indirizzo">

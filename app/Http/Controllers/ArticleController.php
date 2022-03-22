@@ -105,7 +105,7 @@ class ArticleController extends Controller
         $article -> articlePhotos() -> delete();
         $article -> delete();
 
-        return redirect()->route('admin.panel');
+        return redirect()->route('article.list');
     }
 
 }
