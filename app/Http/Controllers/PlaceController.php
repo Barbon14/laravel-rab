@@ -13,7 +13,7 @@ class PlaceController extends Controller
 
         $places = Place::all();
 
-        return view('pages.article.list', compact('places'));
+        return view('pages.place.list', compact('places'));
     }
 
 
@@ -36,8 +36,8 @@ class PlaceController extends Controller
         $data = $request->validate([
 
             'title' => 'required|string',
-            'description' => 'required|string',
-            'address' => 'string|max:255',
+            'description' => 'nullable|string',
+            'address' => 'required|string|max:255',
         ]);
 
         $place = Place::make($data);
@@ -74,9 +74,9 @@ class PlaceController extends Controller
 
         $data = $request->validate([
 
-            'title' => 'string',
-            'description' => 'string',
-            'address' => 'string|max:255',
+            'title' => 'required|string',
+            'description' => 'nullable|string',
+            'address' => 'required|string|max:255',
         ]);
 
         $place = Place::findOrFail($id);
@@ -105,6 +105,6 @@ class PlaceController extends Controller
         $place->placePhotos()->delete();
         $place->delete();
 
-        return redirect()->route('admin.panel');
+        return redirect()->route('place.list');
     }
 }

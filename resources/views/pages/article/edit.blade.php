@@ -31,7 +31,7 @@
             @endforeach
         </select>
 
-        <img src="{{ asset('storage/assets/articles'. $articlePhotos -> photo) }}" alt="non trovo immagine">
+        <img src="{{ asset('storage/assets/articles/'. $articlePhotos[0] -> photo) }}" alt="non trovo immagine">
 
         <label for="images">Inserisci Foto</label>
         <input type="file" name="images">
