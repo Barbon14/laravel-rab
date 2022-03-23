@@ -1,6 +1,25 @@
 // Body
 $body-bg: #f8fafc;
 
+//generals
+
+.top-67 {
+    top: 67%;
+}
+
+.top-75 {
+    top: 75%;
+}
+
+.bg-rab {
+background-color: white;
+}
+
+header {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background-color: white;
+}
+
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;

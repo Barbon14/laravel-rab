@@ -13,7 +13,7 @@
     </title>
 </head>
 <body>
-    <div id="app">
+    <div class="bg-rab" id="app">
 
         @include('components.header')
 
