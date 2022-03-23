@@ -26,7 +26,7 @@
         </select>
 
         <label for="images">Inserisci Foto</label>
-        <input type="file" name="images">
+        <input type="file" name="images[]" multiple>
 
         <input type="submit" value="Crea">
     </form>

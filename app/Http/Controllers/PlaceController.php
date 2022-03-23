@@ -6,6 +6,7 @@ use App\Category;
 use App\Place;
 use App\PlacePhoto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PlaceController extends Controller
 {
@@ -47,14 +48,18 @@ class PlaceController extends Controller
         $place->save();
 
         // immagini 
-        $image = $request->file('images');
-        $imageName = 'place' . $place->id . '_01' . '.' . $image->getClientOriginalExtension();
-        $image->storeAs('/assets/places/', $imageName, 'public');
-        $imageData['photo'] = $imageName;
+        $images = $request->file('images');
 
-        $photo = PlacePhoto::make($imageData);
-        $photo->place()->associate($place->id);
-        $photo->save();
+        foreach ($images as $index => $image) {
+
+            $imageName = 'place' . $place->id . '_' . ($index + 1) . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('/assets/places/', $imageName, 'public');
+            $imageData['photo'] = $imageName;
+
+            $photo = PlacePhoto::make($imageData);
+            $photo -> place() ->associate($place->id);
+            $photo -> save();
+        }
 
         return redirect()->route('place.show', $place->id);
     }
@@ -102,6 +107,10 @@ class PlaceController extends Controller
     public function delete($id) {
 
         $place = Place::findOrFail($id);
+        $photos = PlacePhoto::where('place_id', $id)->get();
+        foreach ($photos as $photo) {
+            Storage::disk('public')->delete('/assets/places/' . $photo->photo);
+        }
         $place->placePhotos()->delete();
         $place->delete();
 
