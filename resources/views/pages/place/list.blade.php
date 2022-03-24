@@ -1,12 +1,12 @@
 @extends('layouts.main-layout')
 
 @section('title')
-    Lista posti
+    Lista Luoghi
 @endsection
 
 @section('content')
 
-    <a href="{{ route('place.create') }}">Nuovo Posto</a>
+    <a href="{{ route('place.create') }}">Nuovo Luogo</a>
 
     <ul>
         @foreach ($places as $place)

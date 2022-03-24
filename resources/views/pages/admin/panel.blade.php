@@ -22,16 +22,16 @@
 
                         {{ __('You are logged in!') }}
 
-                        <h3>
+                        <h4>
                             <a href="{{ route('article.list') }}">
                                 Lista articoli
                             </a>
-                        </h3>
-                        <h3>
+                        </h4>
+                        <h4>
                             <a href="{{ route('place.list') }}">
-                                Lista posti
+                                Lista luoghi
                             </a>
-                        </h3>
+                        </h4>
                         <a class="btn btn-orange" href="{{ route('admin.logout') }}">Logout</a>
                     </div>
                 </div>

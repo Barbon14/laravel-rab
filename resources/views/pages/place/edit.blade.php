@@ -1,7 +1,7 @@
 @extends('layouts.main-layout')
 
 @section('title')
-    Modifica Posto
+    Modifica Luogo
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
         <label for="title">Titolo</label>
         <input type="text" name="title" placeholder="Inserisci titolo" value="{{ $place -> title }}">
 
-        <label for="content">Contenuto articolo</label>
+        <label for="content">Descrizione</label>
         <textarea name="content" cols="30" rows="10" placeholder="Inserisci contenuto articolo" >{{ $place -> content }}"</textarea>
 
         <label for="address">Indirizzo</label>
@@ -31,7 +31,9 @@
             @endforeach
         </select>
 
-        <img src="{{ asset('storage/assets/places/'. $placePhotos[0] -> photo) }}" alt="non trovo immagine">
+        @foreach ($placePhotos as $photo)
+            <img src="{{ asset('storage/assets/places/'. $photo -> photo) }}" alt="non trovo immagine">
+        @endforeach
 
         <label for="images">Inserisci Foto</label>
         <input type="file" name="images">

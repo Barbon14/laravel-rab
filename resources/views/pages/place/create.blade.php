@@ -1,7 +1,7 @@
 @extends('layouts.main-layout')
 
 @section('title')
-    Nuovo Posto
+    Nuovo Luogo
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
         <label for="title">Titolo</label>
         <input type="text" name="title" placeholder="Inserisci titolo">
 
-        <label for="description">Contenuto articolo</label>
+        <label for="description">Descrizione</label>
         <textarea name="description" cols="30" rows="10" placeholder="Inserisci descrizione"></textarea>
 
         <label for="address">Indirizzo</label>
