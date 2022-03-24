@@ -4,5 +4,6 @@ return [
 
     'Locale',
     'Parco',
-    'Attività'
+    'Bottega',
+    'Cineteca'
 ];
