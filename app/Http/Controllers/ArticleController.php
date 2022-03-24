@@ -21,7 +21,9 @@ class ArticleController extends Controller
 
         $article = Article::findOrFail($id);
 
-        return view('pages.article.show', compact('article'));
+        $articlePhotos = ArticlePhoto::where('article_id', $id)->get();
+
+        return view('pages.article.show', compact('article', 'articlePhotos'));
     }    
     
     public function create() {

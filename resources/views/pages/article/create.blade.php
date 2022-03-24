@@ -5,30 +5,40 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('article.store') }}" enctype="multipart/form-data" method="POST">
+    <form class="container" action="{{ route('article.store') }}" enctype="multipart/form-data" method="POST">
         @method('POST')
         @csrf
 
-        <label for="title">Titolo</label>
-        <input type="text" name="title" placeholder="Inserisci titolo">
+        <div class="form-group">
+            <label class="form-label" for="title">Titolo</label>
+            <input class="form-control" type="text" name="title" placeholder="Inserisci titolo">
+        </div>
 
-        <label for="content">Contenuto articolo</label>
-        <textarea name="content" cols="30" rows="10" placeholder="Inserisci contenuto articolo"></textarea>
+        <div class="form-group">
+            <label for="content">Contenuto articolo</label>
+            <textarea class="form-control" name="content" cols="30" rows="10" placeholder="Inserisci contenuto articolo"></textarea>
+        </div>
 
-        <label for="address">Indirizzo</label>
-        <input type="text" name="address" placeholder="Inserisci indirizzo">
+        <div class="form-group">
+            <label for="address">Indirizzo</label>
+            <input class="form-control" type="text" name="address" placeholder="Inserisci indirizzo">
+        </div>
 
-        <label for="category">Categoria</label>
-        <select name="category">
-            @foreach ($categories as $category)
-                <option value="{{$category -> id }}">{{ $category -> name }}</option>
-            @endforeach
-        </select>
+        <div class="form-group">
+            <label for="category">Categoria</label>
+            <select name="category">
+                @foreach ($categories as $category)
+                    <option value="{{$category -> id }}">{{ $category -> name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-        <label for="images">Inserisci Foto</label>
-        <input type="file" name="images[]" multiple>
+        <div class="form-group">
+            <label for="images">Inserisci Foto</label>
+            <input class="form-control-file" type="file" name="images[]" multiple>
+        </div>
 
-        <input type="submit" value="Crea">
+        <input  class="btn btn-primary" type="submit" value="Crea">
     </form>
 
     <a href="{{ route('article.list') }}">Indietro</a>

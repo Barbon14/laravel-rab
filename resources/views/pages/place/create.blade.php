@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('place.store') }}" enctype="multipart/form-data" method="POST">
+    <form class="form" action="{{ route('place.store') }}" enctype="multipart/form-data" method="POST">
         @method('POST')
         @csrf
 
